@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+    {% block sub_content %}
+
+<form id="image-form" action="/upload" method="post" enctype="multipart/form-data">
+    <input type="text" id="key-input" name="key" placeholder="Enter key"><br>
+    <input type="file" id="image-input" name="file" accept="image/*"><br>
+    <input type="submit" value="Submit">
+</form>
+
+    {% endblock %}

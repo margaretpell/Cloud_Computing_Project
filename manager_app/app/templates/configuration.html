@@ -1,0 +1,13 @@
+{% extends "base.html" %} {% block title %}Configuration{% endblock %}
+{% block content %}
+<form id="config-form" action="/refreshConfiguration" method="post" enctype="multipart/form-data">
+    <input type="text" id="cap-input" name="capacity" placeholder="Enter Capacity"><br>
+    <select id="policy" name="policy">
+      <option value="RND">Random Replacement</option>
+      <option value="LRU">Least Recently Used</option>
+    </select>
+    <input type="submit" value="Set Up">
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block title %}ManagerApp{% endblock %}
+{% block content %}
+
+    <div>
+        <b>Delete Application or Memcache Data</b>
+    </div>
+
+    <div>
+        <form class="form-inline" action="{{ url_for('main.clear_all')}}" method="post">
+            <button class="btn btn-primary" type="submit">Delete All Application Data</button>
+        </form>
+
+        <form class="form-inline" action="{{ url_for('main.clear_memcache')}}" method="post">
+            <button class="btn btn-primary" type='submit'>Clear Memcache Data</button>
+        </form>
+    </div>
+{% endblock %}

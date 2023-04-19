@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+    {% block sub_content %}
+
+    <table class="table">
+	  <tr>
+		<th style="text-align: center">Key</th>
+	  </tr>
+{% if keys %}
+	{% for key in keys %}
+		<tbody>
+			<tr>
+{#			  <th>{{loop.index}}</th>#}
+			  <td style="text-align: center">{{key}}</td>
+			</tr>
+		  </tbody>
+	{% endfor %}
+{% else %}
+	<caption>No keys found</caption>
+{% endif %}
+</table>
+
+    {% endblock %}

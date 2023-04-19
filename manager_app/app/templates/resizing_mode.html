@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Memcache Pool Resizing{% endblock %}
+{% block content %}
+<div>
+	<h1>Resizing the Memcache Pool</h1>
+</div>
+
+<div>
+	<form method="post" action="/switch_to_manual">
+		<h2>Manual Mode</h2>
+		<p>Use the buttons below to manually grow or shrink the pool size by one node:</p>
+		<label>Grow the pool size by one node: </label>
+		<button class="btn btn-primary" type="submit" name="manual_mode" value="expand">Expand</button>
+		<br>
+		<label>Shrink the pool size by one node: </label>
+		<button class="btn btn-primary" type="submit" name="manual_mode" value="shrink">Shrink</button>
+	</form>
+</div>
+
+<div>
+	<form method="post" action="/switch_to_auto">
+		<h2>Automatic Mode</h2>
+		<p>Set the following parameters to configure the auto-scaling policy:</p>
+		<label>Max Miss Rate threshold for growing the pool: </label>
+		<input type="text" required="required" id="max_threshold" name="max_threshold" >
+		<br>
+		<label>Min Miss Rate threshold for shrinking the pool: </label>
+		<input type="text" required="required" id="min_threshold" name="min_threshold" >
+		<br>
+		<label>Ratio by which to expand the pool: </label>
+		<input type="text" required="required" id="expand_ratio" name="expand_ratio" >
+		<br>
+		<label>Ratio by which to shrink the pool: </label>
+		<input type="text" required="required" id="shrink_ratio" name="shrink_ratio">
+		<br>
+		<input class="btn btn-primary" type="submit" value="Submit">
+	</form>
+</div>
+{% endblock %}

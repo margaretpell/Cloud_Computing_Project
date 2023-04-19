@@ -1,0 +1,134 @@
+{% extends "base.html" %} {% block title %}Stats{% endblock %}
+
+{% block content %}
+<div >
+	<b>CloudWatch statistics </b>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<body>
+  <canvas id="nodeChart"></canvas>
+  <script>
+    // X-axis for 30mins
+    var xValues = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
+    new Chart("nodeChart", {
+      type: "line",
+      data: {
+        labels: {{Timestamp | tojson}},
+        datasets: [{data: {{Node}},borderColor: "#FAEBD7", fill:false, label:"Number of Node" }
+      ]
+      },
+      options: {
+        title: {
+          display: true,
+          text: "Number of Active Node"
+        },
+        legend: {display: true},
+        scales: {
+          yAxes: [{ticks: {min: 1, max:8}}],
+        }
+      }
+    });
+  </script>
+</body>
+
+<body>
+<canvas id="RateChart"></canvas>
+<script>
+new Chart("RateChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets:
+    [
+      {data: {{MissRate}}, borderColor: "#F5F5DC", fill:false, label:"Miss Rate"},
+      {data: {{HitRate}}, borderColor:"#00FFFF", fill:false, label:"Hit Rate"}
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Memcache Pool Statistics Chart"
+    },
+    legend: {display: true},
+    scales: {
+      yAxes: [{ticks: {min: 0, max:1}}],
+    }
+  }
+});
+</script>
+</body>
+
+<body>
+  <canvas id="CacheItemsChart"></canvas>
+  <script>
+    new Chart("CacheItemsChart", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets:
+      [
+        {data: {{SumList}}, borderColor:"#A52A2A",fill:false, label:"Cache Item Number"}
+      ]
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: "Cache items chart"
+        },
+        legend: {display: true},
+      }
+    });
+  </script>
+</body>
+
+<body>
+  <canvas id="CacheSizeChart"></canvas>
+  <script>
+    new Chart("CacheSizeChart", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets:
+      [
+        {data:{{CacheSize}}, borderColor:"#7FFF00",fill:false, label:"Total Cache Size"}
+      ]
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: "Cache size chart"
+        },
+        legend: {display: true},
+      }
+    });
+  </script>
+</body>
+
+<body>
+  <canvas id="RequestChart"></canvas>
+  <script>
+    new Chart("RequestChart", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets:
+      [
+        {data: {{Request}}, borderColor:"#DC143C", fill:false, label:"Request Served Per Minute"}
+      ]  
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: "Number of Request Served Per Minute"
+        },
+        legend: {display: true}
+      }
+    });
+  </script>
+</body>
+{% endblock %}
+

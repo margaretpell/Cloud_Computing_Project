@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+    {% block sub_content %}
+        {% if image %}
+    <div class="row justify-content-center mt-4">
+        <img src="{{ "data:image/png;base64, " + image}}" class="img-fluid" alt="Responsive image">
+    </div>
+        {% endif %}
+    {% endblock %}
+
