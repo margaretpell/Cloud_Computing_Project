@@ -42,11 +42,6 @@ running_instances = ec2.instances.filter(
 )
 if len(list(running_instances)) == 0:
     if not debug_value or os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
-        user_data_script = """#!/bin/bash
-        source /home/ubuntu/ECE1779_Project/Assignment2/venv/bin/activate
-        cd /home/ubuntu/ECE1779_Project/Assignment2_new/memcache
-        python3 run.py
-        """
         instances = ec2.create_instances(
                 ImageId=webapp.config['AMI_ID'],
                 MinCount=1,
